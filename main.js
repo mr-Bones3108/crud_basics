@@ -20,7 +20,7 @@ const formValidation = () => {
     else {
         data["text"] = input.value
         updateData(data.text)
-        input.value = ""
+        
     }
 }
 
@@ -29,8 +29,19 @@ const updateData = (data) => {
     posts.innerHTML += `<div>
     <p>${data}</p>
     <span class="options">
-        <i class="fas fa-edit"></i>
-        <i class="fas fa-trash-alt"></i>
+        <i onClick="editPost(this)" class="fas fa-edit"></i>
+        <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
     </span>
 </div>`
+input.value = ""
+}
+
+
+const editPost = (e)=>{
+    input.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove()
+}
+
+const deletePost = (e)=>{
+    e.parentElement.parentElement.remove()
 }
